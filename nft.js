@@ -1,9 +1,7 @@
-const { BeaconWallet } = require('@taquito/beacon-wallet');
 const { TempleWallet } = require('@temple-wallet/dapp');
 const { TezosToolkit } = require('@taquito/taquito');
 
-const wallet = new BeaconWallet({ name: 'My DApp' });
-const Tezos = new TezosToolkit('https://YOUR-RPC-URL.com');
+const Tezos = new TezosToolkit('https://ghostnet.ecadinfra.com');
 
 async function createNFT(nftName, nftDescription, nftImage) {
   // Connect to wallet
@@ -11,8 +9,8 @@ async function createNFT(nftName, nftDescription, nftImage) {
   if (!availableWallets || availableWallets.length === 0) {
     throw new Error('No Temple wallet is available');
   }
-  const templeWallet = new TempleWallet('My DApp');
-  await templeWallet.connect('carthagenet');
+  const templeWallet = new TempleWallet('Borderless');
+  await templeWallet.connect('ghostnet');
 
   // Get contract instance
   const contract = await Tezos.wallet.at('KT1FVfi5SFiWay5eqSX7Pr37ztP23oTnRuHi');
