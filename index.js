@@ -1,9 +1,13 @@
 const express = require('express');
 const { createNFT } = require('./nft');
+const { LocalStorage } = require('node-localstorage');
+require('dotenv').config();
 
-const port = process.env.PORT || 3000;
 const app = express();
 app.use(express.json());
+
+// Initialize local storage
+const localStorage = new LocalStorage('./scratch');
 
 app.post('/create-nft', async (req, res) => {
   const { nftName, nftDescription, nftImage } = req.body;
@@ -17,6 +21,7 @@ app.post('/create-nft', async (req, res) => {
   }
 });
 
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
